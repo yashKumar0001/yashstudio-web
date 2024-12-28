@@ -16,6 +16,7 @@ const SignUpForm = ({setIsLoggedIn}) => {
 
     const [showPassword, setShowPassword] = useState(false);
     const [showPassword2, setShowPassword2] = useState(false);
+    const [accountType, setAccountType] = useState("student");
 
     function changeHandler(event) {
         setFormData((prev) => (
@@ -44,11 +45,15 @@ const SignUpForm = ({setIsLoggedIn}) => {
   return (
     <div>
       {/* studen-Instructor tab  */}
-      <div>
-        <button>
+      <div className='text-white mt-3 flex bg-richblack-800 p-1 gap-x-1 rounded-full max-w-max my-6'>
+        <button 
+        className={`${accountType === "student" ? "bg-richblack-900 text-white" : "bg-transparent text-gray-700"} transition-all duration-200 rounded-full py-2 px-5`}
+        onClick={() => setAccountType("student")}>
             Student
         </button>
-        <button>
+        <button 
+        className={`${accountType === "instructor" ? "bg-richblack-900 text-white" : "bg-transparent text-gray-700"} transition-all duration-200 rounded-full py-2 px-5`}
+        onClick={() => setAccountType("instructor")}>
             Instructor
         </button>
       </div>
@@ -56,7 +61,7 @@ const SignUpForm = ({setIsLoggedIn}) => {
       <form 
       className='flex flex-col w-full gap-y-4 mt-6'
       onSubmit={submitHandler}>
-        <div>
+        <div className='flex gap-x-4'>
             <label className='w-full'>
                 <p className='text-[0.875rem] text-white mb-1 leading-[1.375rem]'>First Name <sup className='text-pink-700'>*</sup></p>
                 <input
@@ -69,7 +74,7 @@ const SignUpForm = ({setIsLoggedIn}) => {
                     className='bg-richblack-800 rounded-[0.5rem] text-white w-full p-[12px]'
                 />
             </label>
-            <label>
+            <label className='w-full'>
                 <p className='text-[0.875rem] text-white mb-1 leading-[1.375rem]'>Last Name <sup className='text-pink-700'>*</sup></p>
                 <input
                     required
@@ -95,7 +100,7 @@ const SignUpForm = ({setIsLoggedIn}) => {
                 />
         </label>
 
-        {/* <div> */}
+        <div className='flex gap-x-4'>
             <label className='w-full relative'>
                 <p className='text-[0.875rem] text-white mb-1 leading-[1.375rem]'>Create Password <sup className='text-pink-700'>*</sup></p>
                     <input
@@ -127,11 +132,11 @@ const SignUpForm = ({setIsLoggedIn}) => {
                     <span 
                     className='absolute right-3 top-[38px] cursor-pointer'
                     onClick={() => setShowPassword2((prev) => !prev)}>
-                        {showPassword ? (<AiOutlineEyeInvisible fontSize={24} fill='#AFB2BF'/>) : (<AiOutlineEye fontSize={24} fill='#AFB2BF'/>)}
+                        {showPassword2 ? (<AiOutlineEyeInvisible fontSize={24} fill='#AFB2BF'/>) : (<AiOutlineEye fontSize={24} fill='#AFB2BF'/>)}
                     </span>
             </label>
-        {/* </div> */}
-        <button className='text-white border border-richblack-700 rounded-[8px] px-[12px] py-[8px]'>
+        </div>
+        <button className='font-medium bg-yellow-300 border border-richblack-700 rounded-[8px] px-[12px] py-[8px]'>
             Create Account
         </button>
       </form>
